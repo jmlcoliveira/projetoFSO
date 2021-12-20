@@ -1,8 +1,12 @@
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/jmlcoliveira/Documents/FSO/projetoFSO'
-gcc -Wall -c tstFFS.c
-gcc -Wall -c disk_driver.c
-gcc -Wall -c ffs_bytemap.c
-gcc -Wall -c ffs_super.c
-gcc -o tstFFS tstFFS.o disk_driver.o ffs_bytemap.o ffs_super.o
+gcc -Wall -g -c tstBFS.c
+gcc -Wall -g -c disk_driver.c
+gcc -Wall -g -c ffs_bytemap.c
+gcc -Wall -g -c ffs_super.c
+gcc -Wall -g -c ffs_inode.c
+gcc -Wall -g -c bfs_dir.c
+gcc -Wall -g -c bfs_file.c
+gcc -g -o tstBFS tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o bfs_file.o
 make: Leaving directory '/home/jmlcoliveira/Documents/FSO/projetoFSO'
  

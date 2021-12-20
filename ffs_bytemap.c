@@ -20,7 +20,6 @@ extern struct super_operations super_ops;
 #include "ffs_bytemap.h"
 #endif
 
-
 /* Global variables */
 
 static struct bmapMData bmapMD[NBR_OF_BMAPS];
@@ -53,7 +52,7 @@ int bytemap_print_table(unsigned int bmapIDX)
 
   case SML_INODE_BMAP:
     scan = bmapMD[SML_INODE_BMAP].BMstart;
-    entriesLeft = bmapMD[SML_INODE_BMAP ].BMend;
+    entriesLeft = bmapMD[SML_INODE_BMAP].BMend;
     sprintf(msg, "%s", "small inodes");
     break;
 
@@ -63,6 +62,8 @@ int bytemap_print_table(unsigned int bmapIDX)
     sprintf(msg, "%s", "data blocks");
     break;
   }
+
+  printf("scan:%d entriesLeft:%d\n", scan, entriesLeft);
 
   printf("Printing the %s bytemap ----------\n", msg);
   // prints 16 entries per line
@@ -97,10 +98,9 @@ static void bytemap_init()
   bmapMD[LRG_INODE_BMAP].BMstart = 0;
   bmapMD[LRG_INODE_BMAP].BMend = (numberOfEachInodes * LRG_INOS_PER_BLK);
 
-  bmapMD[SML_INODE_BMAP].diskBlock = INODE_OFFSET + (super_ops.getNinodeblocks()/2);
+  bmapMD[SML_INODE_BMAP].diskBlock = INODE_OFFSET + (super_ops.getNinodeblocks() / 2);
   bmapMD[SML_INODE_BMAP].BMstart = bmapMD[LRG_INODE_BMAP].BMend;
   bmapMD[SML_INODE_BMAP].BMend = (numberOfEachInodes * SML_INOS_PER_BLK);
-
 
   bmapMD[DATA_BMAP].diskBlock = super_ops.getStartDtBmap();
   bmapMD[DATA_BMAP].BMstart = 0;
@@ -116,8 +116,7 @@ static void bytemap_init()
        -EINVAL accessed entry already holds that value
        those resulting from disk operations				***/
 
-static int bytemap_set(unsigned int bmapIDX, unsigned int entry,
-                       unsigned int set)
+static int bytemap_set(unsigned int bmapIDX, unsigned int entry, unsigned int howMany, unsigned int set)
 {
   int ercode;
   unsigned char bmap[DISK_BLOCK_SIZE];
@@ -147,16 +146,20 @@ static int bytemap_set(unsigned int bmapIDX, unsigned int entry,
   if (entry < min)
     return -EFBIG; // Bug elsewhere and unsigned !!!
 
-
   // read in the bytemap
   ercode = disk_ops.read(bmapMD[bmapIDX].diskBlock, bmap);
   if (ercode < 0)
     return ercode;
 
-  if (bmap[entry] == set)
-    return -EINVAL;
-  else
-    bmap[entry] = set;
+/* ---- AULA1, only handles 1 byte allocated
+  if (bmap[entry] == set) return -EINVAL;
+  else bmap[entry]= set;
+---- We now need to handle howMany bytes contiguously allocated */
+
+
+  /*** TODO: allocate howMany entries ***/
+
+  
 
   // update the bytemap
   ercode = disk_ops.write(bmapMD[bmapIDX].diskBlock, bmap);
@@ -210,7 +213,7 @@ static int bytemap_getfree(unsigned int bmapIDX, unsigned int howMany)
     break;
   }
 
-  while (entriesLeft && !found)
+  /*while (entriesLeft && !found)
   {
     if (!bmap[scan])
     {
@@ -222,13 +225,17 @@ static int bytemap_getfree(unsigned int bmapIDX, unsigned int howMany)
   }
 
   if (found)
-    return scan;
+    return scan;*/
+
+  /*** TODO ***
+Again, find howMany contiguous free entries, and return the
+address of the 1st entry in the group
+*** TODO ***/
 
   return -ENOSPC;
 }
 
-struct bytemap_operations bmap_ops= {
-	.init= bytemap_init,
-	.getfree= bytemap_getfree,
-	.set= bytemap_set
-};
+struct bytemap_operations bmap_ops = {
+    .init = bytemap_init,
+    .getfree = bytemap_getfree,
+    .set = bytemap_set};

@@ -18,7 +18,7 @@ extern struct IMsuper ffs_IMsb;
 static int largeInode(unsigned int numinode) {
   unsigned int ninodeblocks = super_ops.getNinodeblocks();
   unsigned int ninodes= super_ops.getTotalInodes();
-  unsigned int nlrgInodes = ninodes / 2;
+  unsigned int nlrgInodes = (ninodeblocks / 2) * LRG_INOS_PER_BLK;
 
   if (numinode >= ninodes) return -EINVAL;
 
