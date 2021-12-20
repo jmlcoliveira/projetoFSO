@@ -270,5 +270,7 @@ struct dir_operations dir_ops= {
 	.readdir= dir_read,
 	.rewinddir= dir_rewind,
 	.create= dir_create,
-	.deletedir= dir_delete
+	.deletedir= dir_delete,
+  .getfree = getfree,
+  .findname = findname
 };

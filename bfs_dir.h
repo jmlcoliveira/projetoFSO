@@ -123,5 +123,7 @@ struct dir_operations {
   int (*rewinddir)();
   int (*create)(char *name, unsigned int inodeNbr);
   int (*deletedir)(char *name);
+  int (* getfree)();
+  int (*findname)(char *name);
 };
 
