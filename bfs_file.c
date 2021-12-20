@@ -2,6 +2,9 @@
 #include "bfs_file.h"
 #endif
 
+
+
+
 /***
   create_C: creates a contiguous file
     parameters:
@@ -16,6 +19,7 @@ static int file_create_C( char *name, unsigned int nblocks, char type) {
 
   // get the disk block entry for this file
   /*** TODO ***/
+  ercode = dir_ops.findname(name);
   if (ercode < 0) return ercode;
   unsigned int dm2set=ercode;
 
