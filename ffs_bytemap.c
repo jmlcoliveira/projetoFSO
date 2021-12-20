@@ -20,6 +20,7 @@ extern struct super_operations super_ops;
 #include "ffs_bytemap.h"
 #endif
 
+
 /* Global variables */
 
 static struct bmapMData bmapMD[NBR_OF_BMAPS];
@@ -46,19 +47,19 @@ int bytemap_print_table(unsigned int bmapIDX)
 
   case LRG_INODE_BMAP:
     scan = bmapMD[LRG_INODE_BMAP].BMstart;
-    entriesLeft = bmapMD[LRG_INODE_BMAP].BMend-scan;
+    entriesLeft = bmapMD[LRG_INODE_BMAP].BMend;
     sprintf(msg, "%s", "large inodes");
     break;
 
   case SML_INODE_BMAP:
     scan = bmapMD[SML_INODE_BMAP].BMstart;
-    entriesLeft = bmapMD[SML_INODE_BMAP ].BMend-scan;
+    entriesLeft = bmapMD[SML_INODE_BMAP ].BMend;
     sprintf(msg, "%s", "small inodes");
     break;
 
   case DATA_BMAP:
     scan = bmapMD[DATA_BMAP].BMstart;
-    entriesLeft = bmapMD[DATA_BMAP].BMend-scan;
+    entriesLeft = bmapMD[DATA_BMAP].BMend;
     sprintf(msg, "%s", "data blocks");
     break;
   }
@@ -98,7 +99,7 @@ static void bytemap_init()
 
   bmapMD[SML_INODE_BMAP].diskBlock = INODE_OFFSET + (super_ops.getNinodeblocks()/2);
   bmapMD[SML_INODE_BMAP].BMstart = bmapMD[LRG_INODE_BMAP].BMend;
-  bmapMD[SML_INODE_BMAP].BMend = bmapMD[LRG_INODE_BMAP].BMend + (numberOfEachInodes * SML_INOS_PER_BLK);
+  bmapMD[SML_INODE_BMAP].BMend = (numberOfEachInodes * SML_INOS_PER_BLK);
 
 
   bmapMD[DATA_BMAP].diskBlock = super_ops.getStartDtBmap();
@@ -127,17 +128,17 @@ static int bytemap_set(unsigned int bmapIDX, unsigned int entry,
 
   case LRG_INODE_BMAP:
     min = bmapMD[LRG_INODE_BMAP].BMstart;
-    max = bmapMD[LRG_INODE_BMAP].BMend;
+    max = bmapMD[LRG_INODE_BMAP].BMend + min;
     break;
 
   case SML_INODE_BMAP:
     min = bmapMD[SML_INODE_BMAP].BMstart;
-    max = bmapMD[SML_INODE_BMAP].BMend;
+    max = bmapMD[SML_INODE_BMAP].BMend + min;
     break;
 
   case DATA_BMAP:
     min = bmapMD[DATA_BMAP].BMstart;
-    max = bmapMD[DATA_BMAP].BMend;
+    max = bmapMD[DATA_BMAP].BMend + min;
     break;
   }
 
