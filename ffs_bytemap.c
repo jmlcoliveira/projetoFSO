@@ -63,8 +63,6 @@ int bytemap_print_table(unsigned int bmapIDX)
     break;
   }
 
-  printf("scan:%d entriesLeft:%d\n", scan, entriesLeft);
-
   printf("Printing the %s bytemap ----------\n", msg);
   // prints 16 entries per line
   while (entriesLeft)
@@ -98,75 +96,13 @@ static void bytemap_init()
   bmapMD[LRG_INODE_BMAP].BMstart = 0;
   bmapMD[LRG_INODE_BMAP].BMend = (numberOfEachInodes * LRG_INOS_PER_BLK);
 
-  bmapMD[SML_INODE_BMAP].diskBlock = INODE_OFFSET + (super_ops.getNinodeblocks() / 2);
+  bmapMD[SML_INODE_BMAP].diskBlock = INODE_OFFSET /*+ (super_ops.getNinodeblocks() / 2)*/;
   bmapMD[SML_INODE_BMAP].BMstart = bmapMD[LRG_INODE_BMAP].BMend;
   bmapMD[SML_INODE_BMAP].BMend = (numberOfEachInodes * SML_INOS_PER_BLK);
 
   bmapMD[DATA_BMAP].diskBlock = super_ops.getStartDtBmap();
   bmapMD[DATA_BMAP].BMstart = 0;
   bmapMD[DATA_BMAP].BMend = super_ops.getNdatablocks();
-}
-
-/***
-   set: set an entry to some value (0/1), UPDATES disk image
-     parameters:
-       @in: bmapIDX (which bmap to access), entry, value
-     errors:
-       -EFBIG access outside bmap range
-       -EINVAL accessed entry already holds that value
-       those resulting from disk operations				***/
-
-static int bytemap_set(unsigned int bmapIDX, unsigned int entry, unsigned int howMany, unsigned int set)
-{
-  int ercode;
-  unsigned char bmap[DISK_BLOCK_SIZE];
-  unsigned int max, min;
-
-  switch (bmapIDX)
-  {
-
-  case LRG_INODE_BMAP:
-    min = bmapMD[LRG_INODE_BMAP].BMstart;
-    max = bmapMD[LRG_INODE_BMAP].BMend + min;
-    break;
-
-  case SML_INODE_BMAP:
-    min = bmapMD[SML_INODE_BMAP].BMstart;
-    max = bmapMD[SML_INODE_BMAP].BMend + min;
-    break;
-
-  case DATA_BMAP:
-    min = bmapMD[DATA_BMAP].BMstart;
-    max = bmapMD[DATA_BMAP].BMend + min;
-    break;
-  }
-
-  if (entry >= max)
-    return -EFBIG;
-  if (entry < min)
-    return -EFBIG; // Bug elsewhere and unsigned !!!
-
-  // read in the bytemap
-  ercode = disk_ops.read(bmapMD[bmapIDX].diskBlock, bmap);
-  if (ercode < 0)
-    return ercode;
-
-/* ---- AULA1, only handles 1 byte allocated
-  if (bmap[entry] == set) return -EINVAL;
-  else bmap[entry]= set;
----- We now need to handle howMany bytes contiguously allocated */
-
-
-  /*** TODO: allocate howMany entries ***/
-
-  
-
-  // update the bytemap
-  ercode = disk_ops.write(bmapMD[bmapIDX].diskBlock, bmap);
-  if (ercode < 0)
-    return ercode;
-
-  return entry;
 }
 
 /***
@@ -213,26 +149,100 @@ static int bytemap_getfree(unsigned int bmapIDX, unsigned int howMany)
     break;
   }
 
-  /*while (entriesLeft && !found)
+  int numberContgFrees = 0;
+  int index = -1;
+  while (entriesLeft && !found)
   {
-    if (!bmap[scan])
+    if (bmap[scan] == '\0')
     {
-      found = 1;
-      break;
+      if (numberContgFrees == 0)
+        index = scan;
+      numberContgFrees++;
+      if (numberContgFrees == howMany)
+        found = 1;
     }
-    scan++;
+    else
+    {
+      index = -1;
+      numberContgFrees = 0;
+    }
     entriesLeft--;
+    scan++;
   }
 
   if (found)
-    return scan;*/
-
-  /*** TODO ***
-Again, find howMany contiguous free entries, and return the
-address of the 1st entry in the group
-*** TODO ***/
+    return index;
 
   return -ENOSPC;
+}
+
+/***
+   set: set an entry to some value (0/1), UPDATES disk image
+     parameters:
+       @in: bmapIDX (which bmap to access), entry, value
+     errors:
+       -EFBIG access outside bmap range
+       -EINVAL accessed entry already holds that value
+       those resulting from disk operations				***/
+
+static int bytemap_set(unsigned int bmapIDX, unsigned int entry, unsigned int howMany, unsigned char set)
+{
+  int ercode;
+  unsigned char bmap[DISK_BLOCK_SIZE];
+  unsigned int max, min;
+
+  switch (bmapIDX)
+  {
+
+  case LRG_INODE_BMAP:
+    min = bmapMD[LRG_INODE_BMAP].BMstart;
+    max = bmapMD[LRG_INODE_BMAP].BMend + min;
+    break;
+
+  case SML_INODE_BMAP:
+    min = bmapMD[SML_INODE_BMAP].BMstart;
+    max = bmapMD[SML_INODE_BMAP].BMend + min;
+    break;
+
+  case DATA_BMAP:
+    min = bmapMD[DATA_BMAP].BMstart;
+    max = bmapMD[DATA_BMAP].BMend + min;
+    break;
+  }
+
+  if (entry >= max)
+    return -EFBIG;
+  if (entry < min)
+    return -EFBIG; // Bug elsewhere and unsigned !!!
+
+  // read in the bytemap
+  ercode = disk_ops.read(bmapMD[bmapIDX].diskBlock, bmap);
+  if (ercode < 0)
+    return ercode;
+
+  /* ---- AULA1, only handles 1 byte allocated
+    if (bmap[entry] == set) return -EINVAL;
+    else bmap[entry]= set;
+  ---- We now need to handle howMany bytes contiguously allocated */
+
+  /*int index = bytemap_getfree(bmapIDX, howMany);
+  if (index < 0)
+    return -EINVAL;
+
+  for (int i = index; i < howMany + index; i++)
+  {
+    bmap[index] = set;
+  }*/
+
+  for(int i = entry; i < entry + howMany; i++)
+    bmap[i] = set;
+
+  // update the bytemap
+  ercode = disk_ops.write(bmapMD[bmapIDX].diskBlock, bmap);
+  if (ercode < 0)
+    return ercode;
+
+  return entry;
 }
 
 struct bytemap_operations bmap_ops = {

@@ -148,7 +148,7 @@ void run_M(int argc, char* args[]) {
     return;
   }
 
-  //bmap_ops.init();
+  bmap_ops.init();//estava comentado
 }
 
 
@@ -300,7 +300,7 @@ void run_t(int argc, char* args[]) {
 void run_B(int argc, char* args[]) {
   int ercode;
 
-  //bmap_ops.init();
+  bmap_ops.init(); //estava comentado
   ercode= bytemap_print_table(atoi(args[1]));
   if (ercode < 0) printf("ERROR bytemap_print_table\n");
 }

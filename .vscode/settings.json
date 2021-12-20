@@ -4,5 +4,12 @@
         "limits": "cpp",
         "ffs_super.h": "c",
         "ffs_inode.h": "c"
-    }
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/mnt/c/Users/jmlco/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO",
+            "binaryPath": "/mnt/c/Users/jmlco/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO/tstBFS",
+            "binaryArgs": []
+        }
+    ]
 }

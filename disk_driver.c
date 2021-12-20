@@ -17,7 +17,7 @@ static int disk_open_nc( const char *filename, unsigned int n ) {
   struct stat s;
   unsigned char buf[DISK_BLOCK_SIZE];
 
-  if (dfd != -1) return -EBUSY;
+  if (dfd != -1 && n != 0) return -EBUSY;
 
   // open existing file
   if (!n) {
