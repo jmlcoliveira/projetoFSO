@@ -32,7 +32,7 @@ struct dir {
 #define ROOT	0
 #define OTHER	1
 
-static struct dir /*** TODO ***/
+static struct dir /*** TODO ***/;
 
 
 /* ---------------- Some helper functions ---------------- */
