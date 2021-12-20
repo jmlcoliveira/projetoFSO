@@ -40,7 +40,7 @@ static int getfree() {
 
   /*** TODO: return the 1st free entry ***/
    for(int i = 0; i<DENTRIES_PER_BLOCK; i++){
-     name2str(str, dirBlk.dir[i].name);
+     name2str(str, dir_block.dirBlk.dir[i].name);
      if(str[0] == '\0' && !(dir_block.dirBlk.dir[i].inode))
       return i;
   }
