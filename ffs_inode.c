@@ -27,7 +27,8 @@ static int largeInode(unsigned int numinode) {
 
 
 /* inode (global) number is decomposed into inode block number
-   and offset within that block. The inode block number starts at 0 */
+   and offset within that block. The inode block number starts at 0 
+   */
 
 static int inode_location(unsigned int numinode,\
 		 unsigned int *numblock, unsigned int *offset) {
@@ -37,12 +38,12 @@ static int inode_location(unsigned int numinode,\
   if (lrg < 0) return lrg; // -EINVAL
 
   if ( lrg ) {
-    *numblock= /*** TODO ***/;
-    *offset= /*** TODO ***/;
+    *numblock= numinode / (LRG_INOS_PER_BLK * halfBlks);
+    *offset= numinode % LRG_INOS_PER_BLK;
   } else {
-    unsigned int smIno= /*** TODO ***/;
-    *numblock= /*** TODO ***/;
-    *offset= /*** TODO ***/;
+    unsigned int smIno= numinode - (LRG_INOS_PER_BLK * halfBlks) -1;
+    *numblock= smIno / (SML_INOS_PER_BLK * halfBlks);
+    *offset= smIno % SML_INOS_PER_BLK;
   }
 
   return 0;
@@ -73,17 +74,17 @@ static int inode_write(unsigned int numinode, const union sml_lrg *in) {
   if ( inode_location(numinode, &block, &offset) < 0) return -EINVAL;
 
   // read inode block from disk into local mem
-  ercode= disk_ops.read(/*** TODO ***/, i_b.data);
+  ercode= disk_ops.read(block, i_b.data);
   if (ercode < 0) return ercode;
 
   // merge inode into block
   if ( largeInode(numinode) )
-    memcpy(/*** TODO ***/, &(in->lrgino), sizeof(struct lrgInode) );
+    memcpy(&i_b.lrgino[offset], &(in->lrgino), sizeof(struct lrgInode) );
   else
-    memcpy(/*** TODO ***/, &(in->smlino), sizeof(struct smlInode) );
+    memcpy(&i_b.lrgino[offset], &(in->smlino), sizeof(struct smlInode) );
 
   // write inode block to disk
-  ercode= disk_ops.write(/*** TODO ***/, i_b.data);
+  ercode= disk_ops.write(block, i_b.data);
   if (ercode < 0) return ercode;
 
   return 0;
@@ -106,14 +107,14 @@ static int inode_read(unsigned int numinode, union sml_lrg *in) {
   if ( inode_location(numinode, &block, &offset) < 0) return -EINVAL;
 
   // read inode block from disk into local mem
-  ercode= disk_ops.read(/*** TODO ***/, i_b.data);
+  ercode= disk_ops.read(block, i_b.data);
   if (ercode < 0) return ercode;
 
   // extract inode from block
   if ( largeInode(numinode) )
-    memcpy(&(in->lrgino), /*** TODO ***/, sizeof(struct lrgInode) );
+    memcpy(&(in->lrgino), &i_b.lrgino[offset], sizeof(struct lrgInode) );
   else
-    memcpy(&(in->smlino), /*** TODO ***/, sizeof(struct smlInode) );
+    memcpy(&(in->smlino), &i_b.lrgino[offset], sizeof(struct smlInode) );
 
   return 0;
 }
@@ -129,18 +130,18 @@ void inode_debug(unsigned int i, union sml_lrg *ino, int validOnly) {
 
   printf("Inode: %d\n", i);
   printf("  isvalid= %s\n", (ino->lrgino.isvalid)?"yes":"no");
-  printf("  type   = %c\n", ino->/*** TODO ***/);
-  printf("  size   = %u\n", ino->/*** TODO ***/);
+  printf("  type   = %c\n", ino->lrgino.type);
+  printf("  size   = %u\n", ino->lrgino.size);
 
   if ( largeInode(i) ) {
     printf("  Direct ptrs:\n");
     for (int i= 0; i < DPOINTERS_PER_INODE; i++)
-      printf("    [%d]= %u\n", i, ino->/*** TODO ***/);
+      printf("    [%d]= %u\n", i, ino->lrgino.dptr[i]);
     printf("  Indirect ptrs:\n");
-      printf("    [%d]= %u\n", 5, ino->/*** TODO ***/);
+      printf("    [%d]= %u\n", 5, ino->lrgino.iptr);
   } else {
-    printf("  start  = %u\n", ino->/*** TODO ***/);
-    printf("  end    = %u\n", ino->/*** TODO ***/);
+    printf("  start  = %u\n", ino->smlino.start);
+    printf("  end    = %u\n", ino->smlino.end);
   }
     
   fflush(stdout);
@@ -158,7 +159,7 @@ int inode_print_table(int validOnly) {
   int ercode;
   union sml_lrg ino;
 
-  unsigned int ninodesLeft= /*** TODO ***/;
+  unsigned int ninodesLeft= super_ops.getTotalInodes();
 
   for (unsigned int i= 0; i < ninodesLeft; i++) {
 

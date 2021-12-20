@@ -1,6 +1,8 @@
 {
     "makefile.extensionOutputFolder": "./.vscode",
     "files.associations": {
-        "limits": "cpp"
+        "limits": "cpp",
+        "ffs_super.h": "c",
+        "ffs_inode.h": "c"
     }
 }
