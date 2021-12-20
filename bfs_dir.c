@@ -85,12 +85,13 @@ int dir_open(char *name) {
     ercode=disk_ops.read(blkOffset, dir_block.dirBlk.data);
     if (ercode < 0) return ercode;
 
+    cwd = &dir_block;
+    
     dir_block.dbOpen= 1;
     dir_block.lastEntry= 0; 
     return 0;
   }
 
-  cwd = &dir_block;
   // NO CODE is included for SUBDIRECTORIES
 }
 
@@ -145,7 +146,8 @@ int dir_create(char *name, unsigned int inode) {
   // Copy the data to the correct location (which is ercode)
   memcpy(dir_block.dirBlk.dir[ercode].name, name, 4);
   dir_block.dirBlk.dir[ercode].inode= inode;
-  
+  cwd = &dir_block;
+
   return 0;
 }
 
@@ -173,7 +175,7 @@ int dir_delete(char *name) {
   // Retrieve the inode from the dentry we're goind to "erase"
   inode2del= dir_block.dirBlk.dir[ercode].inode;
   memset(dir_block.dirBlk.dir[ercode].name, 0, sizeof(struct dentry));
-  
+
   return inode2del;
 }
 
