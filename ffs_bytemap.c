@@ -227,7 +227,8 @@ static int bytemap_getfree(unsigned int bmapIDX, unsigned int howMany)
   return -ENOSPC;
 }
 
-struct bytemap_operations bmap_ops = {
-    .init = bytemap_init,
-    .getfree = bytemap_getfree,
-    .set = bytemap_set};
+struct bytemap_operations bmap_ops= {
+	.init= bytemap_init,
+	.getfree= bytemap_getfree,
+	.set= bytemap_set
+};

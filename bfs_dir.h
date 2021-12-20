@@ -114,6 +114,6 @@ struct dir_operations {
   struct dentry * (*readdir)();
   int (*rewinddir)();
   int (*create)(char *name, unsigned int inodeNbr);
-  int (*delete)(char *name);
+  int (*deletedir)(char *name);
 };
 

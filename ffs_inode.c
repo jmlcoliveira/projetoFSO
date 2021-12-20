@@ -16,9 +16,9 @@ extern struct IMsuper ffs_IMsb;
 
 // Returns 1 if numinode refers to a large inode, else 0
 static int largeInode(unsigned int numinode) {
-  unsigned int ninodeblocks= /*** TODO ***/
-  unsigned int ninodes= /*** TODO ***/
-  unsigned int nlrgInodes= /*** TODO ***/
+  unsigned int ninodeblocks = super_ops.getNinodeblocks();
+  unsigned int ninodes= super_ops.getTotalInodes();
+  unsigned int nlrgInodes = ninodes / 2;
 
   if (numinode >= ninodes) return -EINVAL;
 
@@ -31,18 +31,18 @@ static int largeInode(unsigned int numinode) {
 
 static int inode_location(unsigned int numinode,\
 		 unsigned int *numblock, unsigned int *offset) {
-  unsigned int halfBlks= /*** TODO ***/
+  unsigned int halfBlks= super_ops.getNinodeblocks() / 2;
   int lrg= largeInode(numinode); 
 
   if (lrg < 0) return lrg; // -EINVAL
 
   if ( lrg ) {
-    *numblock= /*** TODO ***/
-    *offset= /*** TODO ***/
+    *numblock= /*** TODO ***/;
+    *offset= /*** TODO ***/;
   } else {
-    unsigned int smIno= /*** TODO ***/
-    *numblock= /*** TODO ***/
-    *offset= /*** TODO ***/
+    unsigned int smIno= /*** TODO ***/;
+    *numblock= /*** TODO ***/;
+    *offset= /*** TODO ***/;
   }
 
   return 0;
