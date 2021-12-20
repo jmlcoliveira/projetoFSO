@@ -32,7 +32,9 @@ struct dir {
 #define ROOT	0
 #define OTHER	1
 
-static struct dir /*** TODO ***/;
+static struct dir dir_block, *cwd;
+
+
 
 
 /* ---------------- Some helper functions ---------------- */
@@ -47,6 +49,11 @@ static int getfree() {
   char str[FNAME_LENGTH+1];
 
   /*** TODO: return the 1st free entry ***/
+   for(int i = 0; i<DENTRIES_PER_BLOCK; i++){
+     name2str(str, dirBlk.dir[i].name);
+     if(str[0] == '\0' && !(dir_block.dirBlk.dir[i].inode))
+      return i;
+  }
 
   return -ENOSPC;
 }
@@ -56,9 +63,15 @@ static int getfree() {
 static int findname(char *name) {
   char str[FNAME_LENGTH+1];
 
-  if (/*** TODO: ... !dbOpen ***/) return -ENOTDIR;
+  if (! dir_block.dbOpen) return -ENOTDIR;
 
   /*** TODO: return the location where the name was found ***/
+  for(int i = 0; i<DENTRIES_PER_BLOCK; i++){
+    name2str(str, dir_block.dirBlk.dir[i].name);
+    if(!(strcmp(str, name)))
+      return i;
+  }
+
   return -1;
 }
 
@@ -79,14 +92,15 @@ int dir_open(char *name) {
   if (!strlen(name) || (strlen(name) > 4) ) return -EINVAL;
 
   if (!strcmp(name, "/")) { //Root Dir
-    ercode=disk_ops.read(blkOffset, /*** TODO ***/.dirBlk.data);
+    ercode=disk_ops.read(blkOffset, dir_block.dirBlk.data);
     if (ercode < 0) return ercode;
 
-    /*** TODO ***/.dbOpen= 1;
-    /*** TODO ***/.lastEntry= 0; 
+    dir_block.dbOpen= 1;
+    dir_block.lastEntry= 0; 
     return 0;
   }
 
+  cwd = &dir_block;
   // NO CODE is included for SUBDIRECTORIES
 }
 
@@ -103,11 +117,11 @@ int dir_close(char *name) {
   if (!strlen(name) || (strlen(name) > 4) ) return -EINVAL;
   if (!cwd->dbOpen) return -ENOTDIR;
 
-  ercode=disk_ops.write(blkOffset, /*** TODO ***/.dirBlk.data);
+  ercode=disk_ops.write(blkOffset, dir_block.dirBlk.data);
   if (ercode < 0) return ercode;
   
-  /*** TODO ***/.dbOpen= 0;
-  /*** TODO ***/.lastEntry= 0; 
+  dir_block.dbOpen= 0;
+  dir_block.lastEntry= 0; 
 
   // NO CODE is included for SUBDIRECTORIES
 
@@ -139,8 +153,8 @@ int dir_create(char *name, unsigned int inode) {
   if (ercode < 0) return ercode;
 
   // Copy the data to the correct location (which is ercode)
-  memcpy(/*** TODO ***/.name, name, 4);
-  /*** TODO ***/.inode= inode;
+  memcpy(dir_block.dirBlk.dir[ercode].name, name, 4);
+  dir_block.dirBlk.dir[ercode].inode= inode;
   
   return 0;
 }
@@ -167,8 +181,8 @@ int dir_delete(char *name) {
   if (ercode < 0) return -ENOENT;
 
   // Retrieve the inode from the dentry we're goind to "erase"
-  inode2del= /*** TODO ***/.inode;
-  memset(/*** TODO ***/, 0, sizeof(struct dentry));
+  inode2del= dir_block.dirBlk.dir[ercode].inode;
+  memset(dir_block.dirBlk.dir[ercode].name, 0, sizeof(struct dentry));
   
   return inode2del;
 }
@@ -186,12 +200,11 @@ int dir_delete(char *name) {
 
 struct dentry *dir_read() {
 
-  if (/*** TODO ***/.dbOpen) { errno= -ENOTDIR; return NULL; } // just like readdir()
+  if (!dir_block.dbOpen) { errno= -ENOTDIR; return NULL; } // just like readdir()
 
-  int i= /*** TODO ***/.lastEntry;
+  int i= dir_block.lastEntry;
   while (i < DENTRIES_PER_BLOCK) {
-    /*** TODO ***/.lastEntry++;
-    if (/*** TODO ***/.dirBlk.dir[i].name[0]) return &(/*** TODO ***/.dirBlk.dir[i]);
+    if (dir_block.dirBlk.dir[i].name[0]) return &(dir_block.dirBlk.dir[i]);
     i++;
   }
 
@@ -208,8 +221,8 @@ struct dentry *dir_read() {
 
 int dir_rewind() {
 
-  if (/*** TODO ***/.dbOpen) return -ENOTDIR;
-  /*** TODO ***/.lastEntry= 0;  
+  if (!dir_block.dbOpen) return -ENOTDIR;
+  dir_block.lastEntry= 0;  
 
   return 0;
 }
@@ -221,16 +234,16 @@ int dir_print_table(int all) {
   int left= DENTRIES_PER_BLOCK;
   char str[FNAME_LENGTH+1];
 
-  if (/*** TODO ***/.dbOpen) return -ENOTDIR;
+  if (!dir_block.dbOpen) return -ENOTDIR;
 
   printf("Printing %s directory entries -----------\n", (all?"all":"valid") );
 
   for (int i= 0; i< left; i++) {
-    name2str(str, /*** TODO ***/.dirBlk.dir[i].name);
+    name2str(str, dir_block.dirBlk.dir[i].name);
     if (all)
-      printf("%02d: %4s %02d\n", i, str, /*** TODO ***/.dirBlk.dir[i].inode);
+      printf("%02d: %4s %02d\n", i, str, dir_block.dirBlk.dir[i].inode);
     else if (strlen(str))
-      printf("%02d: %4s %02d\n", i, str, /*** TODO ***/.dirBlk.dir[i].inode);
+      printf("%02d: %4s %02d\n", i, str, dir_block.dirBlk.dir[i].inode);
   }
 
   return 0;
@@ -244,10 +257,16 @@ int readdir_print_table() {
 
   printf("Printing valid directory entries -----------\n");
 
-  ercode= dir_rewind();
+  ercode = dir_rewind();
   if (ercode < 0) return -ENOTDIR;
 
   /*** TODO: use readdir to print the entries (same format as above) ***/
+    dePtr = dir_read();
+    while(dePtr != NULL){
+      printf("%02d: %4s %02d\n", dir_block.lastEntry, dePtr->name, dePtr->inode);
+      dir_block.lastEntry++;
+      dePtr = dir_read();
+    }
 
   return errno; // if there was no error, errno == 0
 }
