@@ -1,0 +1,8 @@
+make: Entering directory '/home/jmlcoliveira/Documents/FSO/projetoFSO'
+gcc -Wall -c tstFFS.c
+gcc -Wall -c disk_driver.c
+gcc -Wall -c ffs_bytemap.c
+gcc -Wall -c ffs_super.c
+gcc -o tstFFS tstFFS.o disk_driver.o ffs_bytemap.o ffs_super.o
+make: Leaving directory '/home/jmlcoliveira/Documents/FSO/projetoFSO'
+ 
