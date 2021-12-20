@@ -21,20 +21,10 @@ extern struct inode_operations inode_ops;
 #include "bfs_dir.h"
 #endif
 
-// Suggested directory variables grouped together
-struct dir {
-  union dir_block dirBlk;
-  unsigned int diskBlk;
-  int dbOpen;
-  int lastEntry;
-};
-
 #define ROOT	0
 #define OTHER	1
 
 static struct dir dir_block, *cwd;
-
-
 
 
 /* ---------------- Some helper functions ---------------- */

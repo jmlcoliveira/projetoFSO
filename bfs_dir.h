@@ -30,6 +30,14 @@ union dir_block {
   unsigned char data[DISK_BLOCK_SIZE];
 };
 
+// Suggested directory variables grouped together
+struct dir {
+  union dir_block dirBlk;
+  unsigned int diskBlk;
+  int dbOpen;
+  int lastEntry;
+};
+
 
 /* operations on directory structures
 
