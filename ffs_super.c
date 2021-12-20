@@ -11,6 +11,11 @@ extern struct disk_operations disk_ops;
 #include "ffs_super.h"
 #endif
 
+#ifndef FFS_BYTEMAP_H
+#include "ffs_bytemap.h"
+extern struct bytemap_operations bmap_ops;
+#endif
+
 #ifndef FFS_INODE_H
 #include "ffs_inode.h"
 #endif
@@ -85,6 +90,55 @@ static int super_write() {
   return 0;
 }
 
+/***
+  mount: mount the superblock and optionally print its info
+	 NO other disk can be mounted
+    parameters:
+     @in: disk name, print debugging information
+    errors:
+     those from disk driver						***/
+
+static int super_mount( char *diskname, int debug ) {
+  int ercode;
+
+  ercode= disk_ops.open(diskname, 0);
+  if (ercode < 0) return ercode;
+
+  /*** TODO read the superblock ***/
+  if (ercode < 0) return ercode;
+
+  ffs_IMsb.sb.mounted= 1;
+  /*** TODO write the superblock ***/
+  if (ercode < 0) return ercode;
+
+  if (debug) super_debug();
+
+  bmap_ops.init(); // Compute the ranges for the small, large, data bytemaps
+
+  return 0;
+}
+
+
+/***
+  umount: umount the superblock
+    parameters:
+     none
+    errors:
+     those from disk driver						***/
+
+static int super_umount() {
+  int ercode;
+
+  ffs_IMsb.sb.mounted= 0;
+  /*** TODO write the superblock ***/
+  if (ercode < 0) return ercode;
+
+  ercode= disk_ops.close();
+  if (ercode < 0) return ercode;
+
+  return 0;
+}
+
 
 /***
   get*: gets the relevant BFS info from the in-mem SB
@@ -146,6 +200,8 @@ struct super_operations super_ops= {
 	.create= &super_create,
 	.read= &super_read,
 	.write= &super_write,
+	.mount= &super_mount,
+	.umount= &super_umount,
 	.getStartRotdir= &super_getStartRotdir,
 	.getStartDtBmap= &super_getStartDtBmap,
 	.getStartDtArea= &super_getStartDtArea,

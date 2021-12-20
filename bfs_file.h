@@ -26,7 +26,7 @@ extern struct dir_operations dir_ops;
      from bytemap, inode, dir operations
      errors from disk driver
 
-  create_C: creates an indexed file
+  create_I: creates an indexed file
     parameters:
       @in: filename
      @out: return OK

@@ -68,11 +68,17 @@ struct IMsuper {
 void super_debug();
 void IMsuper_debug();
 
-/* NOTE: mount/umount (a disk) will be defined in the future */
+
+/* NEW: mount (a disk)
+        umount (a disk) */
+
+
 struct super_operations {
   void (*create)(unsigned int nblocks, unsigned int ninodeblocks);
   int (*read)();
   int (*write)();
+  int (*mount)( char *diskname, int debug );
+  int (*umount)();
   unsigned int (*getStartRotdir)();
   unsigned int (*getStartDtBmap)();
   unsigned int (*getStartDtArea)();

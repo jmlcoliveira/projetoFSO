@@ -53,7 +53,7 @@ Errors:
 
 struct disk_operations {
   int (*open)(const char *filename, unsigned int n);
-  int (*stat)();
+  int (*stat)(const char *diskname);
   int (*read)(unsigned int blknmbr, unsigned char *buf);
   int (*write)(unsigned int blknmbr, const unsigned char *buf);
   int (*close)();
