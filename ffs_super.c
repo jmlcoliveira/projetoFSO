@@ -157,6 +157,10 @@ unsigned int super_getStartDtArea() {
   return ffs_IMsb.sb.startDtArea;
 }
 
+unsigned int super_getStartInArea(){
+  return ffs_IMsb.sb.startInArea;
+}
+
 unsigned int super_getNinodeblocks() {
   return ffs_IMsb.sb.ninodeblocks;
 }
@@ -205,6 +209,7 @@ struct super_operations super_ops= {
 	.getStartRotdir= &super_getStartRotdir,
 	.getStartDtBmap= &super_getStartDtBmap,
 	.getStartDtArea= &super_getStartDtArea,
+  .getStartInArea = &super_getStartInArea,
 	.getNinodeblocks= &super_getNinodeblocks,
 	.getTotalInodes= &super_getTotalInodes,
 	.getNdatablocks= &super_getNdatablocks

@@ -3,8 +3,6 @@
 #endif
 
 
-
-
 /***
   create_C: creates a contiguous file
     parameters:

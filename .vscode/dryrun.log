@@ -3,7 +3,6 @@ make: Entering directory '/mnt/c/Users/jmlco/OneDrive/_FCT - UNL/2021-2022/1º S
 gcc -Wall -g -c tstBFS.c
 gcc -Wall -g -c disk_driver.c
 gcc -Wall -g -c ffs_bytemap.c
- 
 gcc -Wall -g -c ffs_super.c
 gcc -Wall -g -c ffs_inode.c
 gcc -Wall -g -c bfs_dir.c

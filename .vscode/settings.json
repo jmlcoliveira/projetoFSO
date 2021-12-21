@@ -3,7 +3,8 @@
     "files.associations": {
         "limits": "cpp",
         "ffs_super.h": "c",
-        "ffs_inode.h": "c"
+        "ffs_inode.h": "c",
+        "bfs_file.h": "c"
     },
     "makefile.launchConfigurations": [
         {

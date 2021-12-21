@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+ 
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Dec 20 16:10:00 2021
+# Make data base, printed on Tue Dec 21 14:16:27 2021
 
 # Variables
 
@@ -53,13 +55,13 @@ VSCODE_CWD = /mnt/c/Users/jmlco/AppData/Local/Programs/Microsoft VS Code
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/jmlcoliveira/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Java/jdk-17.0.1/bin:/mnt/c/Users/jmlco/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.2.3/bin:/mnt/c/Users/jmlco/AppData/Roaming/npm:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2020.2.4/bin:/mnt/c/Users/jmlco/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
+PATH = /home/jmlcoliveira/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Java/jdk-17.0.1/bin:/mnt/c/Users/jmlco/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.2.3/bin:/mnt/c/Users/jmlco/AppData/Roaming/npm:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2020.2.4/bin:/mnt/c/Users/jmlco/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
 # environment
 XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-2106dc76-06cd-45c0-96c7-fecd5ebf01cf.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-bc004bbb-5ee0-4b7e-b039-d2ef195d38dd.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -79,7 +81,7 @@ WSL_INTEROP = /run/WSL/8_interop
 # environment
 PULSE_SERVER = /mnt/wslg/PulseServer
 # environment
-WT_SESSION = ef7526e5-94f6-4023-83fb-945195c4fe00
+WT_SESSION = f623c1d9-71ce-4979-b7c2-4a8d4a27b3e2
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/server/remoteExtensionHostProcess
 # environment
@@ -160,10 +162,8 @@ TERM = xterm-256color
 VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 # environment
 WSL_DISTRO_NAME = Ubuntu
-# environment
-MOTD_SHOWN = update-motd
 # variable set hash-table stats:
-# Load=76/1024=7%, Rehash=0, Collisions=4/101=4%
+# Load=75/1024=7%, Rehash=0, Collisions=4/100=4%
 
 # Pattern-specific Variable Values
 
@@ -276,11 +276,9 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
-make: *** No rule to make target 'all'.  Stop.
- 
 #  recipe to execute (from 'Makefile', line 28):
 	rm tstBFS tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o bfs_file.o
+ 
 
 # Not a target:
 bfs_file.c:
@@ -365,6 +363,6 @@ ffs_inode.c:
 # strcache performance: lookups = 98 / hit rate = 57%
 # hash-table stats:
 # Load=42/8192=1%, Rehash=0, Collisions=1/98=1%
-# Finished Make data base on Mon Dec 20 16:10:00 2021
+# Finished Make data base on Tue Dec 21 14:16:27 2021
 
  

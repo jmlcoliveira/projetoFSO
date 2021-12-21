@@ -92,11 +92,11 @@ static void bytemap_init()
 
   int numberOfEachInodes = (super_ops.getNinodeblocks() / 2);
 
-  bmapMD[LRG_INODE_BMAP].diskBlock = INODE_OFFSET;
+  bmapMD[LRG_INODE_BMAP].diskBlock = BMi_OFFSET;
   bmapMD[LRG_INODE_BMAP].BMstart = 0;
   bmapMD[LRG_INODE_BMAP].BMend = (numberOfEachInodes * LRG_INOS_PER_BLK);
 
-  bmapMD[SML_INODE_BMAP].diskBlock = INODE_OFFSET /*+ (super_ops.getNinodeblocks() / 2)*/;
+  bmapMD[SML_INODE_BMAP].diskBlock = BMi_OFFSET;
   bmapMD[SML_INODE_BMAP].BMstart = bmapMD[LRG_INODE_BMAP].BMend;
   bmapMD[SML_INODE_BMAP].BMend = (numberOfEachInodes * SML_INOS_PER_BLK);
 

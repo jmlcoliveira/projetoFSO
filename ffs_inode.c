@@ -38,14 +38,13 @@ static int inode_location(unsigned int numinode,\
   if (lrg < 0) return lrg; // -EINVAL
 
   if ( lrg ) {
-    *numblock= numinode / (LRG_INOS_PER_BLK * halfBlks);
+    *numblock= (numinode / (LRG_INOS_PER_BLK * halfBlks)) + super_ops.getStartInArea();
     *offset= numinode % LRG_INOS_PER_BLK;
   } else {
-    unsigned int smIno= numinode - (LRG_INOS_PER_BLK * halfBlks) -1;
-    *numblock= smIno / (SML_INOS_PER_BLK * halfBlks);
+    unsigned int smIno= numinode - (LRG_INOS_PER_BLK * halfBlks);
+    *numblock= (smIno / (SML_INOS_PER_BLK * halfBlks)) + super_ops.getStartInArea() + halfBlks;
     *offset= smIno % SML_INOS_PER_BLK;
   }
-
   return 0;
 }
 
@@ -81,7 +80,7 @@ static int inode_write(unsigned int numinode, const union sml_lrg *in) {
   if ( largeInode(numinode) )
     memcpy(&i_b.lrgino[offset], &(in->lrgino), sizeof(struct lrgInode) );
   else
-    memcpy(&i_b.lrgino[offset], &(in->smlino), sizeof(struct smlInode) );
+    memcpy(&i_b.smlino[offset], &(in->smlino), sizeof(struct smlInode) );
 
   // write inode block to disk
   ercode= disk_ops.write(block, i_b.data);
@@ -114,7 +113,7 @@ static int inode_read(unsigned int numinode, union sml_lrg *in) {
   if ( largeInode(numinode) )
     memcpy(&(in->lrgino), &i_b.lrgino[offset], sizeof(struct lrgInode) );
   else
-    memcpy(&(in->smlino), &i_b.lrgino[offset], sizeof(struct smlInode) );
+    memcpy(&(in->smlino), &i_b.smlino[offset], sizeof(struct smlInode) );
 
   return 0;
 }

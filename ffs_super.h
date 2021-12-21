@@ -82,6 +82,7 @@ struct super_operations {
   unsigned int (*getStartRotdir)();
   unsigned int (*getStartDtBmap)();
   unsigned int (*getStartDtArea)();
+  unsigned int (*getStartInArea)();
   unsigned int (*getNinodeblocks)();
   unsigned int (*getTotalInodes)();
   unsigned int (*getNdatablocks)();
