@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Dec 21 14:16:27 2021
+# Make data base, printed on Wed Dec 22 18:18:07 2021
 
 # Variables
 
@@ -21,7 +21,7 @@ WSLENV = ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID
 # default
 .SHELLFLAGS := -c
 # environment
-VSCODE_AGENT_FOLDER = /home/jmlcoliveira/.vscode-server
+VSCODE_AGENT_FOLDER = /home/jmlco/.vscode-server
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -31,7 +31,7 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /mnt/c/Users/jmlco/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO
+CURDIR := /mnt/e/Windows/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO
 # makefile
 SHELL = /bin/sh
 # environment
@@ -55,13 +55,13 @@ VSCODE_CWD = /mnt/c/Users/jmlco/AppData/Local/Programs/Microsoft VS Code
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/jmlcoliveira/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/nodejs/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Java/jdk-17.0.1/bin:/mnt/c/Users/jmlco/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.2.3/bin:/mnt/c/Users/jmlco/AppData/Roaming/npm:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2020.2.4/bin:/mnt/c/Users/jmlco/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
+PATH = /home/jmlco/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Razer Chroma SDK/bin:/mnt/c/Program Files/Razer Chroma SDK/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Users/jmlco/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files (x86)/Microsoft SQL Server/150/DTS/Binn/:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/Streamlink/bin:/mnt/c/Program Files (x86)/dotnet/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/Azure Data Studio/bin:/mnt/c/Program Files (x86)/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/150/DTS/Binn/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PowerShell/7/:/mnt/c/MinGW/bin:/mnt/c/Program Files/Portugal Identity Card/:/mnt/c/Users/jmlco/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/jmlco/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/jmlco/AppData/Local/Streamlink/bin:/mnt/c/Users/jmlco/AppData/Roaming/npm:/mnt/c/Program Files/JetBrains/PhpStorm 2020.1.2/bin:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2020.3/bin:/mnt/c/Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.2.3/bin:/mnt/c/Users/jmlco/.dotnet/tools:/mnt/c/Users/jmlco/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/MinGW:/mnt/c/Users/jmlco/AppData/Local/gitkraken/bin:/mnt/c/SDK/flutter/bin:/snap/bin
 # environment
 XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-bc004bbb-5ee0-4b7e-b039-d2ef195d38dd.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-cfd51196-062d-4a12-aad7-063c29a890e6.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -73,23 +73,23 @@ DISPLAY = :0
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /mnt/c/Users/jmlco/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO
+PWD = /mnt/e/Windows/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO
 # default
 .LOADED := 
 # environment
-WSL_INTEROP = /run/WSL/8_interop
+WSL_INTEROP = /run/WSL/1209_interop
 # environment
 PULSE_SERVER = /mnt/wslg/PulseServer
 # environment
-WT_SESSION = f623c1d9-71ce-4979-b7c2-4a8d4a27b3e2
+WT_SESSION = 59e98869-0157-4964-a5df-e4806a38bd5e
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/server/remoteExtensionHostProcess
 # environment
-HOME = /home/jmlcoliveira
+HOME = /home/jmlco
 # environment
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
-LOGNAME = jmlcoliveira
+LOGNAME = jmlco
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
@@ -107,7 +107,7 @@ SHLVL = 1
 # default
 MAKE_VERSION := 4.2.1
 # environment
-USER = jmlcoliveira
+USER = jmlco
 # makefile
 .DEFAULT_GOAL := tstBFS
 # environment
@@ -151,7 +151,7 @@ WAYLAND_DISPLAY = wayland-0
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
-VSCODE_INJECT_NODE_MODULE_LOOKUP_PATH = /home/jmlcoliveira/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/remote/node_modules
+VSCODE_INJECT_NODE_MODULE_LOOKUP_PATH = /home/jmlco/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/remote/node_modules
 # default
 .RECIPEPREFIX := 
 # environment
@@ -171,9 +171,9 @@ WSL_DISTRO_NAME = Ubuntu
 
 # Directories
 
-# . (device 63, inode 4222124650731980): 36 files, no impossibilities.
+# . (device 67, inode 1125899908212786): 37 files, no impossibilities.
 
-# 36 files, no impossibilities in 1 directories.
+# 37 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -209,7 +209,7 @@ bfs_dir.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-20 16:09:11.1289421
+#  Last modified 2021-12-22 17:57:53.5240353
 #  File has been updated.
 #  Successfully updated.
 
@@ -276,9 +276,9 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 #  recipe to execute (from 'Makefile', line 28):
 	rm tstBFS tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o bfs_file.o
- 
 
 # Not a target:
 bfs_file.c:
@@ -357,12 +357,12 @@ ffs_inode.c:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 42 / storage = 470 B / avg = 11 B
-# current buf: size = 8162 B / used = 470 B / count = 42 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 43 / storage = 481 B / avg = 11 B
+# current buf: size = 8162 B / used = 481 B / count = 43 / avg = 11 B
 
-# strcache performance: lookups = 98 / hit rate = 57%
+# strcache performance: lookups = 99 / hit rate = 56%
 # hash-table stats:
-# Load=42/8192=1%, Rehash=0, Collisions=1/98=1%
-# Finished Make data base on Tue Dec 21 14:16:27 2021
+# Load=43/8192=1%, Rehash=0, Collisions=1/99=1%
+# Finished Make data base on Wed Dec 22 18:18:07 2021
 
  

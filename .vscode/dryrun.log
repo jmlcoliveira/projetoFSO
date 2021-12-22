@@ -1,13 +1,18 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/mnt/c/Users/jmlco/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO'
+make: Entering directory '/mnt/e/Windows/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO'
 gcc -Wall -g -c tstBFS.c
+ 
 gcc -Wall -g -c disk_driver.c
+ 
 gcc -Wall -g -c ffs_bytemap.c
+ 
 gcc -Wall -g -c ffs_super.c
+ 
 gcc -Wall -g -c ffs_inode.c
+ 
 gcc -Wall -g -c bfs_dir.c
  
 gcc -Wall -g -c bfs_file.c
 gcc -g -o tstBFS tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o bfs_file.o
-make: Leaving directory '/mnt/c/Users/jmlco/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO'
+make: Leaving directory '/mnt/e/Windows/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO'
  

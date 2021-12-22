@@ -130,7 +130,8 @@ static int super_umount() {
   int ercode;
 
   ffs_IMsb.sb.mounted= 0;
-  /*** TODO write the superblock ***/
+  ercode = super_write();
+
   if (ercode < 0) return ercode;
 
   ercode= disk_ops.close();

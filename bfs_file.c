@@ -17,16 +17,18 @@ static int file_create_C( char *name, unsigned int nblocks, char type) {
 
   // get the disk block entry for this file
   /*** TODO ***/
-  ercode = dir_ops.findname(name);
+  ercode = bmap_ops.getfree(DATA_BMAP, nblocks);
   if (ercode < 0) return ercode;
   unsigned int dm2set=ercode;
 
   // get the inode entry for this file
-  /*** TODO ***/
+  union sml_lrg *in;
+  ercode = inode_ops.read(, in);
   if (ercode < 0) return ercode;
   unsigned int inode2set=ercode;
 
   // create the dentry
+  struct dentry new;
   /*** TODO ***/
   if (ercode < 0) return ercode;
 

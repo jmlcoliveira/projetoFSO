@@ -2,6 +2,7 @@ CFLAGS = -Wall -g
 
 tstBFS: tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o bfs_file.o
 	gcc -g -o tstBFS tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o bfs_file.o
+	
 
 tstBFS.o: tstBFS.c
 	gcc $(CFLAGS) -c tstBFS.c
@@ -26,4 +27,3 @@ bfs_file.o: bfs_file.c bfs_file.h bfs_dir.h ffs_bytemap.h ffs_super.h bfs_errno.
 
 clean:
 	rm tstBFS tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o bfs_file.o
-
