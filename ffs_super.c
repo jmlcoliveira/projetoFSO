@@ -104,11 +104,12 @@ static int super_mount( char *diskname, int debug ) {
   ercode= disk_ops.open(diskname, 0);
   if (ercode < 0) return ercode;
 
-  /*** TODO read the superblock ***/
+  ercode = super_read();
   if (ercode < 0) return ercode;
 
   ffs_IMsb.sb.mounted= 1;
-  /*** TODO write the superblock ***/
+
+  ercode = super_write();
   if (ercode < 0) return ercode;
 
   if (debug) super_debug();

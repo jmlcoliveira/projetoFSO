@@ -1,3 +1,5 @@
+#include <string.h>
+
 #ifndef BFS_FILE_H
 #include "bfs_file.h"
 #endif
@@ -16,28 +18,25 @@ static int file_create_C( char *name, unsigned int nblocks, char type) {
   int ercode;
 
   // get the disk block entry for this file
-  /*** TODO ***/
   ercode = bmap_ops.getfree(DATA_BMAP, nblocks);
   if (ercode < 0) return ercode;
   unsigned int dm2set=ercode;
 
   // get the inode entry for this file
-  union sml_lrg *in;
-  ercode = inode_ops.read(, in);
+  ercode = bmap_ops.getfree(SML_INODE_BMAP, 1);
   if (ercode < 0) return ercode;
   unsigned int inode2set=ercode;
 
   // create the dentry
-  struct dentry new;
-  /*** TODO ***/
+  ercode = dir_ops.create(name, inode2set);
   if (ercode < 0) return ercode;
 
   // mark the disk block entry for this file
-  /*** TODO ***/
+  ercode = bmap_ops.set(DATA_BMAP, dm2set, nblocks, 1);
   if (ercode < 0) return ercode; // This would be a bug!
 
   // mark the inode bmap entry for this file
-  /*** TODO ***/
+  ercode = bmap_ops.set(SML_INODE_BMAP, inode2set, 1, 1);
   if (ercode < 0) return ercode; // This would be a bug!
 
   // save the data in the inode itself
@@ -45,7 +44,7 @@ static int file_create_C( char *name, unsigned int nblocks, char type) {
   union sml_lrg ino;
 
   // Read the inode whose number is inode2set
-  /*** TODO ***/
+  ercode = inode_ops.read(inode2set, &ino);
   if (ercode < 0) return ercode; // This would be a bug!
 
   ino.smlino.isvalid= 1;
@@ -55,7 +54,7 @@ static int file_create_C( char *name, unsigned int nblocks, char type) {
   ino.smlino.end= dm2set;
 
   // Save the inode 
-  /*** TODO ***/
+  ercode = inode_ops.write(inode2set, &ino);
   if (ercode < 0) return ercode; // This would be a bug!
 
   return 0;

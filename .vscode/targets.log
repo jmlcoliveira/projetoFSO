@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
- 
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Dec 22 18:18:07 2021
+# Make data base, printed on Thu Dec 23 14:14:55 2021
 
 # Variables
 
@@ -17,7 +15,7 @@ make: *** No rule to make target 'all'.  Stop.
 # automatic
 ?F = $(notdir $?)
 # environment
-WSLENV = ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID
+WSLENV = VSCODE_WSL_EXT_LOCATION/up
 # default
 .SHELLFLAGS := -c
 # environment
@@ -37,7 +35,7 @@ SHELL = /bin/sh
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
 # environment
-_ = /mnt/c/Users/jmlco/AppData/Local/Programs/Microsoft VS Code/bin/code
+_ = /home/jmlco/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/node
 # makefile (from 'Makefile', line 1)
 CFLAGS = -Wall -g
 # makefile (from 'Makefile', line 1)
@@ -55,13 +53,13 @@ VSCODE_CWD = /mnt/c/Users/jmlco/AppData/Local/Programs/Microsoft VS Code
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/jmlco/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Razer Chroma SDK/bin:/mnt/c/Program Files/Razer Chroma SDK/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Users/jmlco/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files (x86)/Microsoft SQL Server/150/DTS/Binn/:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/Streamlink/bin:/mnt/c/Program Files (x86)/dotnet/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/Azure Data Studio/bin:/mnt/c/Program Files (x86)/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/150/DTS/Binn/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PowerShell/7/:/mnt/c/MinGW/bin:/mnt/c/Program Files/Portugal Identity Card/:/mnt/c/Users/jmlco/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/jmlco/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/jmlco/AppData/Local/Streamlink/bin:/mnt/c/Users/jmlco/AppData/Roaming/npm:/mnt/c/Program Files/JetBrains/PhpStorm 2020.1.2/bin:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2020.3/bin:/mnt/c/Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.2.3/bin:/mnt/c/Users/jmlco/.dotnet/tools:/mnt/c/Users/jmlco/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/MinGW:/mnt/c/Users/jmlco/AppData/Local/gitkraken/bin:/mnt/c/SDK/flutter/bin:/snap/bin
+PATH = /home/jmlco/.vscode-server/bin/899d46d82c4c95423fb7e10e68eba52050e30ba3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Razer Chroma SDK/bin:/mnt/c/Program Files/Razer Chroma SDK/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Users/jmlco/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files (x86)/Microsoft SQL Server/150/DTS/Binn/:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/Streamlink/bin:/mnt/c/Program Files (x86)/dotnet/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/Azure Data Studio/bin:/mnt/c/Program Files (x86)/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/150/DTS/Binn/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PowerShell/7/:/mnt/c/MinGW/bin:/mnt/c/Program Files/Portugal Identity Card/:/mnt/c/Users/jmlco/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/jmlco/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/jmlco/AppData/Local/Streamlink/bin:/mnt/c/Users/jmlco/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jmlco/AppData/Roaming/npm:/mnt/c/Program Files/JetBrains/PhpStorm 2020.1.2/bin:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2020.3/bin:/mnt/c/Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.2.3/bin:/mnt/c/Users/jmlco/.dotnet/tools:/mnt/c/Program Files/Azure Data Studio/bin:/mnt/c/Users/jmlco/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/MinGW:/mnt/c/Users/jmlco/AppData/Local/gitkraken/bin:/mnt/c/SDK/flutter/bin:/snap/bin
 # environment
 XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-cfd51196-062d-4a12-aad7-063c29a890e6.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-fa5bc2c5-e3e0-4f64-ae7f-d2d8489945d5.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -77,11 +75,9 @@ PWD = /mnt/e/Windows/OneDrive/_FCT - UNL/2021-2022/1º Semestre/FSO/projetoFSO
 # default
 .LOADED := 
 # environment
-WSL_INTEROP = /run/WSL/1209_interop
+WSL_INTEROP = /run/WSL/26_interop
 # environment
 PULSE_SERVER = /mnt/wslg/PulseServer
-# environment
-WT_SESSION = 59e98869-0157-4964-a5df-e4806a38bd5e
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/server/remoteExtensionHostProcess
 # environment
@@ -103,7 +99,7 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-SHLVL = 1
+SHLVL = 0
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -111,7 +107,7 @@ USER = jmlco
 # makefile
 .DEFAULT_GOAL := tstBFS
 # environment
-NAME = Code
+NAME = DESKTOP-PQ08TKB
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
@@ -132,8 +128,6 @@ MFLAGS = -pqrR
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
-# environment
-WT_PROFILE_ID = {2c4de342-38b7-51cf-b940-2309a097f518}
 # default
 MAKEFILES := 
 # automatic
@@ -163,7 +157,7 @@ VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 # environment
 WSL_DISTRO_NAME = Ubuntu
 # variable set hash-table stats:
-# Load=75/1024=7%, Rehash=0, Collisions=4/100=4%
+# Load=73/1024=7%, Rehash=0, Collisions=4/98=4%
 
 # Pattern-specific Variable Values
 
@@ -171,9 +165,9 @@ WSL_DISTRO_NAME = Ubuntu
 
 # Directories
 
-# . (device 67, inode 1125899908212786): 37 files, no impossibilities.
+# . (device 67, inode 1125899908212786): 34 files, no impossibilities.
 
-# 37 files, no impossibilities in 1 directories.
+# 34 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -209,7 +203,7 @@ bfs_dir.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-22 17:57:53.5240353
+#  Last modified 2021-12-22 20:01:50.8912548
 #  File has been updated.
 #  Successfully updated.
 
@@ -229,7 +223,7 @@ bfs_file.o: bfs_file.c bfs_file.h bfs_dir.h ffs_bytemap.h ffs_super.h bfs_errno.
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 25):
+#  recipe to execute (from 'Makefile', line 26):
 	gcc $(CFLAGS) -c bfs_file.c
 
 # Not a target:
@@ -242,14 +236,14 @@ disk_driver.o: disk_driver.c disk_driver.h bfs_errno.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 10):
+#  recipe to execute (from 'Makefile', line 11):
 	gcc $(CFLAGS) -c disk_driver.c
 
 ffs_bytemap.o: ffs_bytemap.c ffs_bytemap.h bfs_errno.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 13):
+#  recipe to execute (from 'Makefile', line 14):
 	gcc $(CFLAGS) -c ffs_bytemap.c
 
 # Not a target:
@@ -262,24 +256,26 @@ ffs_super.o: ffs_super.c ffs_super.h disk_driver.h ffs_inode.h bfs_errno.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 16):
+#  recipe to execute (from 'Makefile', line 17):
 	gcc $(CFLAGS) -c ffs_super.c
 
 ffs_inode.o: ffs_inode.c ffs_super.h disk_driver.h ffs_inode.h bfs_errno.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 19):
+#  recipe to execute (from 'Makefile', line 20):
 	gcc $(CFLAGS) -c ffs_inode.c
 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
-#  recipe to execute (from 'Makefile', line 28):
+#  recipe to execute (from 'Makefile', line 29):
 	rm tstBFS tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o bfs_file.o
 
+ 
+make: *** No rule to make target 'all'.  Stop.
+ 
 # Not a target:
 bfs_file.c:
 #  Implicit rule search has not been done.
@@ -310,19 +306,20 @@ tstBFS: tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o b
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 4):
 	gcc -g -o tstBFS tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o bfs_file.o
+	
 
 bfs_dir.o: bfs_dir.c bfs_dir.h ffs_super.h disk_driver.h bfs_errno.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 22):
+#  recipe to execute (from 'Makefile', line 23):
 	gcc $(CFLAGS) -c bfs_dir.c
 
 tstBFS.o: tstBFS.c
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 7):
+#  recipe to execute (from 'Makefile', line 8):
 	gcc $(CFLAGS) -c tstBFS.c
 
 # Not a target:
@@ -357,12 +354,12 @@ ffs_inode.c:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 43 / storage = 481 B / avg = 11 B
-# current buf: size = 8162 B / used = 481 B / count = 43 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 40 / storage = 456 B / avg = 11 B
+# current buf: size = 8162 B / used = 456 B / count = 40 / avg = 11 B
 
-# strcache performance: lookups = 99 / hit rate = 56%
+# strcache performance: lookups = 96 / hit rate = 58%
 # hash-table stats:
-# Load=43/8192=1%, Rehash=0, Collisions=1/99=1%
-# Finished Make data base on Wed Dec 22 18:18:07 2021
+# Load=40/8192=0%, Rehash=0, Collisions=1/96=1%
+# Finished Make data base on Thu Dec 23 14:14:55 2021
 
  

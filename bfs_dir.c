@@ -24,7 +24,7 @@ extern struct inode_operations inode_ops;
 #define ROOT 0
 #define OTHER 1
 
-static struct dir root, *cwd;
+static struct dir root, other, *cwd;
 
 /* ---------------- Some helper functions ---------------- */
 
@@ -42,8 +42,8 @@ static int getfree()
   /*** TODO: return the 1st free entry ***/
   for (int i = 0; i < DENTRIES_PER_BLOCK; i++)
   {
-    name2str(str, root.dirBlk.dir[i].name);
-    if (str[0] == '\0' && !(root.dirBlk.dir[i].inode))
+    name2str(str, cwd->dirBlk.dir[i].name);
+    if (str[0] == '\0' && !(cwd->dirBlk.dir[i].inode))
       return i;
   }
 
@@ -56,13 +56,13 @@ static int findname(char *name)
 {
   char str[FNAME_LENGTH + 1];
 
-  if (!root.dbOpen)
+  if (!cwd->dbOpen)
     return -ENOTDIR;
 
   /*** TODO: return the location where the name was found ***/
   for (int i = 0; i < DENTRIES_PER_BLOCK; i++)
   {
-    name2str(str, root.dirBlk.dir[i].name);
+    name2str(str, cwd->dirBlk.dir[i].name);
     if (!(strcmp(str, name)))
       return i;
   }
@@ -93,31 +93,33 @@ int dir_open(char *name)
       return ercode;
 
     cwd = &root;
-
-    root.dbOpen = 1;
-    root.lastEntry = 0;
-    return 0;
   }
   else
   {
     if (!root.dbOpen)
       return -ENOTDIR;
-    
+
     ercode = findname(name);
     if (ercode < 0)
       return -ENOENT;
 
     int inode = root.dirBlk.dir[ercode].inode;
 
-    union sml_lrg *in;
-    ercode = inode_ops.read(inode, in);
+    union sml_lrg in;
+    ercode = inode_ops.read(inode, &in);
 
-    ercode = disk_ops.read(in->smlino.start, cwd->dirBlk.data);
+    blkOffset = super_ops.getStartDtArea() + in.smlino.start;
+
+    ercode = disk_ops.read(blkOffset, other.dirBlk.data);
 
     root.dbOpen = 0;
-    cwd->dbOpen = 1;
-    cwd->lastEntry = 0;
+
+    cwd = &other;
   }
+
+  cwd->dbOpen = 1;
+  cwd->lastEntry = 0;
+  cwd->diskBlk = blkOffset;
 
   return 0;
 }
@@ -137,18 +139,18 @@ int dir_close(char *name)
   if (!cwd->dbOpen)
     return -ENOTDIR;
 
-  ercode = disk_ops.write(blkOffset, cwd->dirBlk.data);
+  ercode = disk_ops.write(cwd->diskBlk, cwd->dirBlk.data);
   if (ercode < 0)
     return ercode;
 
   cwd->dbOpen = 0;
 
-  if(strcmp(name, "/")){ //if closed directory was diferent from root
+  if (strcmp(name, "/"))
+  { // if closed directory was diferent from root
     cwd = &root;
     cwd->dbOpen = 1;
   }
   cwd->lastEntry = 0;
-
 
   // NO CODE is included for SUBDIRECTORIES
 
@@ -236,17 +238,20 @@ int dir_delete(char *name)
 struct dentry *dir_read()
 {
 
-  if (!root.dbOpen)
+  if (!cwd->dbOpen)
   {
     errno = -ENOTDIR;
     return NULL;
   } // just like readdir()
 
-  int i = root.lastEntry;
+  int i = cwd->lastEntry;
   while (i < DENTRIES_PER_BLOCK)
   {
-    if (root.dirBlk.dir[i].name[0])
-      return &(root.dirBlk.dir[i]);
+    if (cwd->dirBlk.dir[i].name[0] != '\0')
+    {
+      cwd->lastEntry = i;
+      return &(cwd->dirBlk.dir[i]);
+    }
     i++;
   }
 
@@ -263,9 +268,9 @@ struct dentry *dir_read()
 int dir_rewind()
 {
 
-  if (!root.dbOpen)
+  if (!cwd->dbOpen)
     return -ENOTDIR;
-  root.lastEntry = 0;
+  cwd->lastEntry = 0;
 
   return 0;
 }
@@ -277,18 +282,18 @@ int dir_print_table(int all)
   int left = DENTRIES_PER_BLOCK;
   char str[FNAME_LENGTH + 1];
 
-  if (!root.dbOpen)
+  if (!cwd->dbOpen)
     return -ENOTDIR;
 
   printf("Printing %s directory entries -----------\n", (all ? "all" : "valid"));
 
   for (int i = 0; i < left; i++)
   {
-    name2str(str, root.dirBlk.dir[i].name);
+    name2str(str, cwd->dirBlk.dir[i].name);
     if (all)
-      printf("%02d: %4s %02d\n", i, str, root.dirBlk.dir[i].inode);
+      printf("%02d: %4s %02d\n", i, str, cwd->dirBlk.dir[i].inode);
     else if (strlen(str))
-      printf("%02d: %4s %02d\n", i, str, root.dirBlk.dir[i].inode);
+      printf("%02d: %4s %02d\n", i, str, cwd->dirBlk.dir[i].inode);
   }
 
   return 0;
@@ -311,8 +316,8 @@ int readdir_print_table()
   while (dePtr != NULL)
   {
     name2str(str, dePtr->name);
-    printf("%02d: %4s %02d\n", root.lastEntry, str, dePtr->inode);
-    root.lastEntry++;
+    printf("%02d: %4s %02d\n", cwd->lastEntry, str, dePtr->inode);
+    cwd->lastEntry++;
     dePtr = dir_read();
   }
 
