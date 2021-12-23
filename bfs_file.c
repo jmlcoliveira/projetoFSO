@@ -74,24 +74,23 @@ static int file_create_I(char *name) {
   int ercode;
 
   // get the inode entry for this file
-  /*** TODO ***/
+  ercode = bmap_ops.getfree(SML_INODE_BMAP, 1);
   if (ercode < 0) return ercode;
   unsigned int inode2set=ercode;
 
   // create the dentry
-  /*** TODO ***/
+  ercode = dir_ops.create(name, inode2set);
   if (ercode < 0) return ercode;
 
   // mark the inode bmap entry for this file
-  /*** TODO ***/
+  ercode = bmap_ops.set(SML_INODE_BMAP, inode2set, 1, 1);
   if (ercode < 0) return ercode; // This would be a bug!
 
   // save the data in the inode itself
-
   union sml_lrg ino;
 
   // Read the inode whose number is inode2set
-  /*** TODO ***/
+  ercode = inode_ops.read(inode2set, &ino);
   if (ercode < 0) return ercode; // This would be a bug!
 
   // inode deallocate should clean the on disk image, no need here
@@ -99,7 +98,7 @@ static int file_create_I(char *name) {
   //ino.lrgino.size= 0;
 
   // Save the inode 
-  /*** TODO ***/
+  inode_ops.write(inode2set, &ino);
   if (ercode < 0) return ercode; // This would be a bug!
 
   return 0;
