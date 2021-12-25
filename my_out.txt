@@ -13,21 +13,6 @@ Superblock:
   startDtBmap      = 5
   startDtArea      = 6
   mounted          = yes
-Printing the small inodes bytemap ----------
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-Printing the large inodes bytemap ----------
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-Printing the data blocks bytemap ----------
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 O		OK
 Printing valid directory entries -----------
 e	AAAA	1	OK
@@ -35,42 +20,17 @@ e	AAA	2	OK
 e	AA	3	OK
 e	A	4	OK
 e	BBBB	5	OK
+e	AAA	6	ERROR
 Printing valid directory entries -----------
 00: AAAA 01
 01:  AAA 02
 02:   AA 03
 03:    A 04
 04: BBBB 05
-05: SUBD 32
-Printing the small inodes bytemap ----------
-1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-Printing the large inodes bytemap ----------
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-Printing the data blocks bytemap ----------
-1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 t	A	OK
 t	AAA	OK
 t	AA	OK
+t	AAAA	OK
+t	BBBB	OK
 Printing valid directory entries -----------
-00: AAAA 01
-04: BBBB 05
-05: SUBD 32
-O		OK
-e	BBBB	1	OK
-Printing valid directory entries -----------
-00: BBBB 01
-C		OK
-Printing valid directory entries -----------
-00: AAAA 01
-04: BBBB 05
-05: SUBD 32
 C		OK

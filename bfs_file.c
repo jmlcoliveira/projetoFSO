@@ -31,7 +31,7 @@ static int file_create_C( char *name, unsigned int nblocks, char type) {
   ercode = dir_ops.create(name, inode2set);
   if (ercode < 0) return ercode;
 
-  // mark the disk block entry for this file
+  // mark the disk block entry for this file  
   ercode = bmap_ops.set(DATA_BMAP, dm2set, nblocks, 1);
   if (ercode < 0) return ercode; // This would be a bug!
 
@@ -74,7 +74,7 @@ static int file_create_I(char *name) {
   int ercode;
 
   // get the inode entry for this file
-  ercode = bmap_ops.getfree(SML_INODE_BMAP, 1);
+  ercode = bmap_ops.getfree(LRG_INODE_BMAP, 1);
   if (ercode < 0) return ercode;
   unsigned int inode2set=ercode;
 
@@ -83,7 +83,7 @@ static int file_create_I(char *name) {
   if (ercode < 0) return ercode;
 
   // mark the inode bmap entry for this file
-  ercode = bmap_ops.set(SML_INODE_BMAP, inode2set, 1, 1);
+  ercode = bmap_ops.set(LRG_INODE_BMAP, inode2set, 1, 1);
   if (ercode < 0) return ercode; // This would be a bug!
 
   // save the data in the inode itself

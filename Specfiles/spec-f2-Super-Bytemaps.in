@@ -36,14 +36,14 @@ B 2
 #  FIRST, code and test ONLY 1 free entry
 #on small
 g 0 1
-#g 0 14
-#g 0 15
+g 0 14
+g 0 15
 #on large
 g 1 1
-#g 1 14
+g 1 14
 #on data
 g 2 1
-#g 2 16
+g 2 16
 #Set the same bytemap entries to 0
 #on small
 s 0 32 1 0

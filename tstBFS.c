@@ -398,6 +398,8 @@ void runcommand(int argc, char *args[])
   case 'I': // Print the Inode table
     run_I(argc, args);
     break;
+  case 'i':
+    run_i(argc, args);
   case 'Y': // Print valid directory entries
     run_Y(argc, args);
     break;
@@ -454,7 +456,7 @@ int main(int argc, char *argv[])
 {
   FILE *fdesc;
 
-  int forceFile = 1;
+  int forceFile = 0;
 
   if (forceFile || ((argc > 1) && (strcmp(argv[1], "<"))))
   {
