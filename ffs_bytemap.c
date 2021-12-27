@@ -220,22 +220,12 @@ static int bytemap_set(unsigned int bmapIDX, unsigned int entry, unsigned int ho
   if (ercode < 0)
     return ercode;
 
-  /* ---- AULA1, only handles 1 byte allocated
-    if (bmap[entry] == set) return -EINVAL;
-    else bmap[entry]= set;
-  ---- We now need to handle howMany bytes contiguously allocated */
-
-  /*int index = bytemap_getfree(bmapIDX, howMany);
-  if (index < 0)
-    return -EINVAL;
-
-  for (int i = index; i < howMany + index; i++)
+  for (int i = entry; i < entry + howMany; i++)
   {
-    bmap[index] = set;
-  }*/
-
-  for(int i = entry; i < entry + howMany; i++)
+    if (bmap[i] == set)
+      return -EINVAL;
     bmap[i] = set;
+  }
 
   // update the bytemap
   ercode = disk_ops.write(bmapMD[bmapIDX].diskBlock, bmap);

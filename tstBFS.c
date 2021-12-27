@@ -456,14 +456,14 @@ int main(int argc, char *argv[])
 {
   FILE *fdesc;
 
-  int forceFile = 0;
+  int forceFile = 1;
 
   if (forceFile || ((argc > 1) && (strcmp(argv[1], "<"))))
   {
     if (!forceFile)
       fdesc = fopen(argv[1], "r");
     else
-      fdesc = fopen("./Specfiles/spec-f2-Root-e-Subdir.in", "r");
+      fdesc = fopen("./Specfiles/test1.txt", "r");
 
     if (fdesc == NULL)
       abort();

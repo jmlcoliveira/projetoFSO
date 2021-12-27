@@ -1,0 +1,6 @@
+D disk0 100
+F disk0 4
+M disk0
+O /
+c FIL1 1 C
+I 1

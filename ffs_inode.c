@@ -38,11 +38,11 @@ static int inode_location(unsigned int numinode,\
   if (lrg < 0) return lrg; // -EINVAL
 
   if ( lrg ) {
-    *numblock= (numinode / (LRG_INOS_PER_BLK * halfBlks)) + super_ops.getStartInArea();
+    *numblock= (numinode / (LRG_INOS_PER_BLK));
     *offset= numinode % LRG_INOS_PER_BLK;
   } else {
     unsigned int smIno= numinode - (LRG_INOS_PER_BLK * halfBlks);
-    *numblock= (smIno / (SML_INOS_PER_BLK * halfBlks)) + super_ops.getStartInArea() + halfBlks;
+    *numblock= (smIno / (SML_INOS_PER_BLK)) + halfBlks;
     *offset= smIno % SML_INOS_PER_BLK;
   }
   return 0;
@@ -73,7 +73,7 @@ static int inode_write(unsigned int numinode, const union sml_lrg *in) {
   if ( inode_location(numinode, &block, &offset) < 0) return -EINVAL;
 
   // read inode block from disk into local mem
-  ercode= disk_ops.read(block, i_b.data);
+  ercode= disk_ops.read(block + super_ops.getStartInArea(), i_b.data);
   if (ercode < 0) return ercode;
 
   // merge inode into block
@@ -83,7 +83,7 @@ static int inode_write(unsigned int numinode, const union sml_lrg *in) {
     memcpy(&i_b.smlino[offset], &(in->smlino), sizeof(struct smlInode) );
 
   // write inode block to disk
-  ercode= disk_ops.write(block, i_b.data);
+  ercode= disk_ops.write(block + super_ops.getStartInArea(), i_b.data);
   if (ercode < 0) return ercode;
 
   return 0;
@@ -106,7 +106,7 @@ static int inode_read(unsigned int numinode, union sml_lrg *in) {
   if ( inode_location(numinode, &block, &offset) < 0) return -EINVAL;
 
   // read inode block from disk into local mem
-  ercode= disk_ops.read(block, i_b.data);
+  ercode= disk_ops.read(block + super_ops.getStartInArea(), i_b.data);
   if (ercode < 0) return ercode;
 
   // extract inode from block

@@ -51,7 +51,7 @@ static int file_create_C( char *name, unsigned int nblocks, char type) {
   ino.smlino.type= type;
   ino.smlino.size= 0;
   ino.smlino.start= dm2set;
-  ino.smlino.end= dm2set;
+  ino.smlino.end= dm2set+nblocks-1;
 
   // Save the inode 
   ercode = inode_ops.write(inode2set, &ino);
@@ -93,9 +93,10 @@ static int file_create_I(char *name) {
   ercode = inode_ops.read(inode2set, &ino);
   if (ercode < 0) return ercode; // This would be a bug!
 
+  inode_ops.init(&ino);
   // inode deallocate should clean the on disk image, no need here
   ino.lrgino.isvalid= 1;
-  //ino.lrgino.size= 0;
+  ino.lrgino.type = 'I';
 
   // Save the inode 
   inode_ops.write(inode2set, &ino);

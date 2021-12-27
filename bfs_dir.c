@@ -21,10 +21,7 @@ extern struct inode_operations inode_ops;
 #include "bfs_dir.h"
 #endif
 
-#define ROOT 0
-#define OTHER 1
-
-static struct dir root, other, *cwd;
+static struct dir root, other, *cwd = &root;
 
 /* ---------------- Some helper functions ---------------- */
 
@@ -37,13 +34,9 @@ static void name2str(char *str, char *nam)
 
 static int getfree()
 {
-  char str[FNAME_LENGTH + 1];
-
-  /*** TODO: return the 1st free entry ***/
   for (int i = 0; i < DENTRIES_PER_BLOCK; i++)
   {
-    name2str(str, cwd->dirBlk.dir[i].name);
-    if (str[0] == '\0' && !(cwd->dirBlk.dir[i].inode))
+    if (cwd->dirBlk.dir[i].name[0] == '\0')
       return i;
   }
 
@@ -67,7 +60,7 @@ static int findname(char *name)
       return i;
   }
 
-  return -1;
+  return -ENOENT;
 }
 
 /* ---------------- End of helper functions ---------------- */
@@ -96,23 +89,21 @@ int dir_open(char *name)
   }
   else
   {
-    if (!root.dbOpen)
-      return -ENOTDIR;
-
     ercode = findname(name);
-    if (ercode < 0)
-      return -ENOENT;
+    if(ercode < 0)
+      return ercode;
 
-    int inode = root.dirBlk.dir[ercode].inode;
+    int inode = cwd->dirBlk.dir[ercode].inode;
 
     union sml_lrg in;
     ercode = inode_ops.read(inode, &in);
 
+    if(in.smlino.type != 'D')
+      return -ENOENT;
+
     blkOffset = super_ops.getStartDtArea() + in.smlino.start;
 
     ercode = disk_ops.read(blkOffset, other.dirBlk.data);
-
-    root.dbOpen = 0;
 
     cwd = &other;
   }
@@ -132,7 +123,6 @@ int dir_open(char *name)
 int dir_close(char *name)
 {
   int ercode;
-  unsigned int blkOffset = ROOT_DIR_OFFSET;
 
   if (!strlen(name) || (strlen(name) > 4))
     return -EINVAL;
@@ -145,14 +135,10 @@ int dir_close(char *name)
 
   cwd->dbOpen = 0;
 
-  if (strcmp(name, "/"))
-  { // if closed directory was diferent from root
+  if (strcmp(name, "/")) // if closed directory was diferent from root
     cwd = &root;
-    cwd->dbOpen = 1;
-  }
-  cwd->lastEntry = 0;
 
-  // NO CODE is included for SUBDIRECTORIES
+  cwd->lastEntry = 0;
 
   return 0;
 }
@@ -305,11 +291,11 @@ int readdir_print_table()
   struct dentry *dePtr;
   char str[FNAME_LENGTH + 1];
 
-  printf("Printing valid directory entries -----------\n");
-
   ercode = dir_rewind();
   if (ercode < 0)
     return -ENOTDIR;
+
+  printf("Printing valid directory entries -----------\n");
 
   /*** TODO: use readdir to print the entries (same format as above) ***/
   dePtr = dir_read();
