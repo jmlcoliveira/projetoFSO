@@ -99,7 +99,7 @@ int dir_open(char *name)
     ercode = inode_ops.read(inode, &in);
 
     if(in.smlino.type != 'D')
-      return -ENOENT;
+      return -ENOTDIR;
 
     blkOffset = super_ops.getStartDtArea() + in.smlino.start;
 

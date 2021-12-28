@@ -1,0 +1,76 @@
+D disk0 100	Create OK
+F disk0	4	Formatting...
+Superblock:
+  fsmagic          = 0xf0f03410
+  nblocks          = 100
+  nbmapblocksinodes= 1
+  ninodeblocks     = 4
+  ninodes          = 192
+  nbmapblocksdata  = 1
+  ndatablocks      = 92
+  startInArea      = 2
+  startRotdir      = 6
+  startDtBmap      = 7
+  startDtArea      = 8
+  mounted          = yes
+O		OK
+Inode: 64
+  isvalid= yes
+  type   = C
+  size   = 0
+  start  = 0
+  end    = 0
+O	No such file or directory	ERROR
+Printing valid directory entries -----------
+00: FIL1 64
+01: SUB1 65
+O		OK
+Printing valid directory entries -----------
+00: FIL1 66
+01: SUB2 67
+Inode: 64
+  isvalid= yes
+  type   = C
+  size   = 0
+  start  = 0
+  end    = 0
+Inode: 65
+  isvalid= yes
+  type   = D
+  size   = 0
+  start  = 1
+  end    = 1
+Inode: 66
+  isvalid= yes
+  type   = C
+  size   = 0
+  start  = 2
+  end    = 2
+Inode: 67
+  isvalid= yes
+  type   = D
+  size   = 0
+  start  = 3
+  end    = 3
+Printing the small inodes bytemap ----------
+1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Printing the large inodes bytemap ----------
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Printing the data blocks bytemap ----------
+1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 
+C		OK

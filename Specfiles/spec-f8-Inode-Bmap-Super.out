@@ -1,0 +1,236 @@
+D disk0 50	Create OK
+F disk0	8	Formatting...
+Superblock:
+  fsmagic          = 0xf0f03410
+  nblocks          = 50
+  nbmapblocksinodes= 1
+  ninodeblocks     = 8
+  ninodes          = 384
+  nbmapblocksdata  = 1
+  ndatablocks      = 38
+  startInArea      = 2
+  startRotdir      = 10
+  startDtBmap      = 11
+  startDtArea      = 12
+  mounted          = yes
+Printing the small inodes bytemap ----------
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Printing the large inodes bytemap ----------
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Printing the data blocks bytemap ----------
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 
+Bmap set: bmap 1 target 0 value 1 entry 0
+Bmap set: bmap 1 target 127 value 1 entry 127
+Bmap set: bmap 0 target 128 value 3 entry 128
+Bmap get free: 131
+Bmap get free: 1
+Bmap get free: 0
+Bmap set: bmap 2 target 0 value 39 entry -27
+Bmap set: bmap 2 target 0 value 38 entry 0
+Inode: 0
+  isvalid= yes
+  type   = I
+  size   = 0
+  Direct ptrs:
+    [0]= 0
+    [1]= 0
+    [2]= 0
+    [3]= 0
+    [4]= 0
+  Indirect ptrs:
+    [5]= 0
+Inode: 127
+  isvalid= yes
+  type   = I
+  size   = 0
+  Direct ptrs:
+    [0]= 0
+    [1]= 0
+    [2]= 0
+    [3]= 0
+    [4]= 0
+  Indirect ptrs:
+    [5]= 0
+Inode: 128
+  isvalid= yes
+  type   = C
+  size   = 0
+  start  = 0
+  end    = 0
+Inode: 129
+  isvalid= yes
+  type   = C
+  size   = 0
+  start  = 0
+  end    = 0
+Inode: 130
+  isvalid= yes
+  type   = C
+  size   = 0
+  start  = 0
+  end    = 0
+Bmap set: bmap 0 target 128 value 1 entry 128
+Bmap set: bmap 0 target 130 value 1 entry 130
+Printing the data blocks bytemap ----------
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 
+Printing the large inodes bytemap ----------
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+Printing the small inodes bytemap ----------
+0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Bmap set: bmap 2 target 15 value 1 entry 15
+Printing the data blocks bytemap ----------
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 
+Bmap set: bmap 2 target 15 value 1 entry 15
+Printing the data blocks bytemap ----------
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 
+Printing the large inodes bytemap ----------
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+Printing the small inodes bytemap ----------
+0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Superblock:
+  fsmagic          = 0xf0f03410
+  nblocks          = 50
+  nbmapblocksinodes= 1
+  ninodeblocks     = 8
+  ninodes          = 384
+  nbmapblocksdata  = 1
+  ndatablocks      = 38
+  startInArea      = 2
+  startRotdir      = 10
+  startDtBmap      = 11
+  startDtArea      = 12
+  mounted          = yes
+Inode: 0
+  isvalid= yes
+  type   = I
+  size   = 0
+  Direct ptrs:
+    [0]= 0
+    [1]= 0
+    [2]= 0
+    [3]= 0
+    [4]= 0
+  Indirect ptrs:
+    [5]= 0
+Inode: 127
+  isvalid= yes
+  type   = I
+  size   = 0
+  Direct ptrs:
+    [0]= 0
+    [1]= 0
+    [2]= 0
+    [3]= 0
+    [4]= 0
+  Indirect ptrs:
+    [5]= 0
+Inode: 129
+  isvalid= yes
+  type   = C
+  size   = 0
+  start  = 0
+  end    = 0
+Printing the small inodes bytemap ----------
+0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Printing the large inodes bytemap ----------
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+Printing the data blocks bytemap ----------
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 

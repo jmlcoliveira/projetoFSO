@@ -10,8 +10,6 @@
 #include "ffs_super.h"
 #endif
 extern struct super_operations super_ops;
-extern struct IMsuper ffs_IMsb;
-
 
 
 // Returns 1 if numinode refers to a large inode, else 0

@@ -215,6 +215,9 @@ static int bytemap_set(unsigned int bmapIDX, unsigned int entry, unsigned int ho
   if (entry < min)
     return -EFBIG; // Bug elsewhere and unsigned !!!
 
+  if (howMany > bmapMD[bmapIDX].BMend)
+    return -EFBIG;
+
   // read in the bytemap
   ercode = disk_ops.read(bmapMD[bmapIDX].diskBlock, bmap);
   if (ercode < 0)

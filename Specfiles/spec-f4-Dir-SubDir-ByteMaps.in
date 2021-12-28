@@ -1,0 +1,19 @@
+D disk0 100
+F disk0 4
+M disk0
+O /
+c FIL1 1 C
+I 1
+O FIL1
+c SUB1 1 D
+Y
+O SUB1
+c FIL1 1 C
+c SUB2 1 D
+Y
+I 1
+B 0
+B 1
+B 2
+C /
+U

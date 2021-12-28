@@ -456,7 +456,7 @@ int main(int argc, char *argv[])
 {
   FILE *fdesc;
 
-  int forceFile = 1;
+  int forceFile = 0;
 
   if (forceFile || ((argc > 1) && (strcmp(argv[1], "<"))))
   {
