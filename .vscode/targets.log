@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Dec 28 18:10:33 2021
+# Make data base, printed on Tue Dec 28 20:11:52 2021
 
 # Variables
 
@@ -61,7 +61,7 @@ XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-32f6f15f-62d5-4db8-9b39-3b20325de59a.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-8f70fdd4-4928-49a3-a4e7-c0ddf724d454.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -167,9 +167,9 @@ WSL_DISTRO_NAME = Ubuntu
 
 # Directories
 
-# . (device 67, inode 1125899908212786): 40 files, no impossibilities.
+# . (device 67, inode 1125899908212786): 32 files, no impossibilities.
 
-# 40 files, no impossibilities in 1 directories.
+# 32 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -276,10 +276,10 @@ clean:
 	rm tstBFS tstBFS.o disk_driver.o ffs_bytemap.o ffs_super.o ffs_inode.o bfs_dir.o bfs_file.o
 
 # Not a target:
+ 
 bfs_file.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
 #  File has not been updated.
 
 # Not a target:
@@ -357,9 +357,9 @@ ffs_inode.c:
 # strcache buffers: 1 (0) / strings = 46 / storage = 499 B / avg = 10 B
 # current buf: size = 8162 B / used = 499 B / count = 46 / avg = 10 B
 
-# strcache performance: lookups = 102 / hit rate = 54%
+# strcache performance: lookups = 94 / hit rate = 51%
 # hash-table stats:
-# Load=46/8192=1%, Rehash=0, Collisions=1/102=1%
-# Finished Make data base on Tue Dec 28 18:10:33 2021
+# Load=46/8192=1%, Rehash=0, Collisions=1/94=1%
+# Finished Make data base on Tue Dec 28 20:11:52 2021
 
  

@@ -52,7 +52,6 @@ static int findname(char *name)
   if (!cwd->dbOpen)
     return -ENOTDIR;
 
-  /*** TODO: return the location where the name was found ***/
   for (int i = 0; i < DENTRIES_PER_BLOCK; i++)
   {
     name2str(str, cwd->dirBlk.dir[i].name);
